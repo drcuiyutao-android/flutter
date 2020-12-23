@@ -28,8 +28,8 @@ class _InnerState extends State<FlutterMainPage> {
                   // var result = await Navigator.push(context, MaterialPageRoute(builder: (context) {
                   //   return NavigatorPage(params: "你好 我是来是来自首页的数据",);
                   // },));
-                  //var result = await Navigator.pushNamed(context, "navigatorPage", arguments: "拦截数据");
-                  var result = await Navigator.pushReplacementNamed(context, "navigatorPage", arguments: "拦截数据");
+                  var result = await Navigator.pushNamed(context, "navigatorPage", arguments: "我是来自首页的数据");
+                  //var result = await Navigator.pushReplacementNamed(context, "navigatorPage", arguments: "拦截数据");
                   setState(() {
                     list[index] = result;
                   });
