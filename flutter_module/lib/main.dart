@@ -1,12 +1,15 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_module/Image/ImagePage.dart';
+import 'package:flutter_module/Text/TextPage.dart';
 import 'package:flutter_module/home/FlutterMainPage.dart';
 import 'package:flutter_module/home/FlutterTestPage.dart';
 import 'package:flutter_module/navigator/NavigatorPage.dart';
 import 'package:flutter_module/router/RouterUtil.dart';
 
 const String NAVIGATOR_PAGE = "navigatorPage";
+const String TEXT_PAGE = "textPage";
 const String MAIN_PAGE = "mainPage";
+const String IMAGE_PAGE = "imagePage";
 
 void main() => runApp(MyApp());
 
@@ -18,35 +21,42 @@ class MyApp extends StatefulWidget {
 }
 
 class _InnerState extends State<MyApp> {
-
   //充当白名单使用
   Map<String, WidgetBuilder> routes = {
     "loginPage": (context) => FlutterTestPage(),
   };
 
   //真正跳转
-  Widget getOpenWidgetPage(String path, Object arguments){
+  Widget getOpenWidgetPage(String path, Object arguments) {
     Widget widgetPage;
-    switch(path){
+    switch (path) {
       case NAVIGATOR_PAGE:
         widgetPage = NavigatorPage(arguments: arguments);
         break;
       case MAIN_PAGE:
         widgetPage = FlutterMainPage();
         break;
+      case TEXT_PAGE:
+        widgetPage = TextPage();
+        break;
+      case IMAGE_PAGE:
+        widgetPage = ImagePage();
+        break;
       default:
         widgetPage = Scaffold(
-          appBar: AppBar(title: Text("错误页面"),),
-           body: Center(
-             child: Text("恭喜你走丢了"),
-           ),
+          appBar: AppBar(
+            title: Text("错误页面"),
+          ),
+          body: Center(
+            child: Text("恭喜你走丢了"),
+          ),
         );
     }
     return widgetPage;
   }
 
   //flutter 路由拦截
-  Route<dynamic> interceptor(RouteSettings settings){
+  Route<dynamic> interceptor(RouteSettings settings) {
     String routeName = settings.name;
     print("routeName : $routeName");
     if (routeName.isNotEmpty) {
@@ -54,9 +64,9 @@ class _InnerState extends State<MyApp> {
       //   去登录
       //   return
       // }
-        return MaterialPageRoute(builder: (context) {
-          return getOpenWidgetPage(routeName, settings.arguments);
-        });
+      return MaterialPageRoute(builder: (context) {
+        return getOpenWidgetPage(routeName, settings.arguments);
+      });
     }
     return null;
   }
