@@ -3,13 +3,17 @@ import 'package:flutter_module/Image/ImagePage.dart';
 import 'package:flutter_module/Text/TextPage.dart';
 import 'package:flutter_module/home/FlutterMainPage.dart';
 import 'package:flutter_module/home/FlutterTestPage.dart';
+import 'package:flutter_module/input/InputPage.dart';
 import 'package:flutter_module/navigator/NavigatorPage.dart';
 import 'package:flutter_module/router/RouterUtil.dart';
+import 'package:flutter_module/switch/SwitchPage.dart';
 
 const String NAVIGATOR_PAGE = "navigatorPage";
 const String TEXT_PAGE = "textPage";
 const String MAIN_PAGE = "mainPage";
 const String IMAGE_PAGE = "imagePage";
+const String SWITCH_PAGE = "switchPage";
+const String INPUT_PAGE = "inputPage";
 
 void main() => runApp(MyApp());
 
@@ -41,6 +45,12 @@ class _InnerState extends State<MyApp> {
         break;
       case IMAGE_PAGE:
         widgetPage = ImagePage();
+        break;
+      case SWITCH_PAGE:
+        widgetPage = SwitchPage();
+        break;
+        case INPUT_PAGE:
+        widgetPage = InputPage();
         break;
       default:
         widgetPage = Scaffold(
